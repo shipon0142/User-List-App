@@ -11,5 +11,9 @@ class AppRouter extends RootStackRouter {
           transitionsBuilder: TransitionsBuilders.slideLeft,
           page: UserListRoute.page,
         ),
+        CustomRoute(
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          page: UserDetailsRoute.page,
+        ),
       ];
 }

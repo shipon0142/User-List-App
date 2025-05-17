@@ -8,4 +8,5 @@ class ColorManager {
   static const Color k121212 = Color(0xFF121212);
   static const Color kEDF2FA = Color(0xFFEDF2FA);
   static const Color kF4ECFF = Color(0xFFF4ECFF);
+  static const Color k181818 = Color(0xFF181818);
 }

@@ -29,36 +29,7 @@ Failure _handleError(DioException error) {
     case DioExceptionType.receiveTimeout:
       return DataSource.receiveTimeOut.getFailure();
     case DioExceptionType.badResponse:
-      if (error.response != null &&
-          error.response?.statusCode != null &&
-          error.response?.statusMessage != null) {
-        String message = '';
-        try {
-          if (error.response != null && error.response!.data != null) {
-            var responseData = error.response!.data;
-            try {
-              responseData = jsonDecode(responseData);
-            } catch (e) {
-              debugPrint("Failed to parse response data: $e");
-            }
-            try {
-              message = responseData["message"] ?? "";
-            } catch (e) {
-              debugPrint(
-                  "No 'message' key found or invalid data structure: $e");
-            }
-          }
-        } catch (e) {
-          debugPrint("An error occurred: $e");
-        }
-        return Failure(
-            code: error.response?.statusCode ?? 0,
-            status: error.response?.statusMessage ?? "",
-            message: message,
-            data: error.response?.data);
-      } else {
-        return DataSource.defaultValue.getFailure();
-      }
+      return DataSource.badRequest.getFailure();
     case DioExceptionType.cancel:
       return DataSource.cancel.getFailure();
     default:
