@@ -1,5 +1,6 @@
 import 'package:assignment/core/network/failure.dart';
 import 'package:assignment/features/user/domain/entity/user.dart';
+import 'package:assignment/features/user/domain/entity/user_list.dart';
 import 'package:assignment/features/user/domain/repositories/i_user_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -8,7 +9,7 @@ class UserListUseCase {
 
   UserListUseCase({required this.iRepository});
 
-  Future<Either<Failure, List<User>>> call({
+  Future<Either<Failure, UserList>> call({
     required int page,
     required int perPage,
   }) async => await iRepository.getUsers(page: page,perPage: perPage);

@@ -11,4 +11,7 @@ class GetUsers extends UserListEvent {
 }
 class GetMoreUsers extends UserListEvent {
   const GetMoreUsers();
+
+}class GetSearchUsers extends UserListEvent {
+  const GetSearchUsers();
 }

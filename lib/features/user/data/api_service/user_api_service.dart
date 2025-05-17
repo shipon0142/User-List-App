@@ -1,5 +1,7 @@
 import 'package:assignment/core/network/api_config.dart';
-import 'package:assignment/features/user/data/models/user_model.dart';
+import 'package:assignment/features/user/data/models/user_list_model/user_list_model.dart';
+import 'package:assignment/features/user/data/models/user_model/user_model.dart';
+import 'package:assignment/features/user/domain/entity/user_list.dart';
 import 'package:dio/dio.dart';
 
 class UserApiService {
@@ -7,7 +9,7 @@ class UserApiService {
 
   UserApiService(this._dio);
 
-  Future<List<UserModel>> getUserList({required int page, required int perPage}) async {
+  Future<UserListModel> getUserList({required int page, required int perPage}) async {
     final response = await _dio.get(
       APIConfig.kBaseUrl,
       queryParameters: {
@@ -16,12 +18,8 @@ class UserApiService {
       },
     );
 
-    final data = response.data;
+    return UserListModel.fromJson(response.data);
 
-    if (data is List) {
-      return data.map((item) => UserModel.fromJson(item)).toList();
-    } else {
-      return [];
-    }
+
   }
 }

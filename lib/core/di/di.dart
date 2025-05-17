@@ -17,6 +17,7 @@ Future<void> injectDependencies() async {
       onRequest: (options, handler) async {
         options.headers[contentType] = applicationJson;
         options.headers[accept] = applicationJson;
+        options.headers[xApiKey] = xApiKeyValue;
         handler.next(options);
       },
     ));

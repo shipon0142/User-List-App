@@ -48,3 +48,12 @@ class MoreUserListSuccess extends UserListState {
 
   const MoreUserListSuccess({required this.users});
 }
+class SearchingUserList extends UserListState {
+  const SearchingUserList();
+}
+
+class SearchUserListSuccess extends UserListState {
+  final List<User> users;
+
+  const SearchUserListSuccess({required this.users});
+}

@@ -2,6 +2,7 @@ import 'package:assignment/core/network/error_handler.dart';
 import 'package:assignment/core/network/network_info.dart';
 import 'package:assignment/features/user/data/data_sources/i_user_data_source.dart';
 import 'package:assignment/features/user/domain/entity/user.dart';
+import 'package:assignment/features/user/domain/entity/user_list.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/network/failure.dart';
@@ -14,10 +15,10 @@ class UserRepository extends IUserRepository {
   UserRepository({required this.iDataSource, required this.networkInfo});
 
   @override
-  Future<Either<Failure, List<User>>> getUsers({required int page, required int perPage}) async {
+  Future<Either<Failure, UserList>> getUsers({required int page, required int perPage}) async {
     if (await networkInfo.isConnected) {
       try {
-        List<User> result = await iDataSource.getUserList(page: page,perPage: perPage);
+        UserList result = await iDataSource.getUserList(page: page,perPage: perPage);
         return Right(result);
       } on Exception catch (error) {
         return Left(ErrorHandler.handle(error).failure);

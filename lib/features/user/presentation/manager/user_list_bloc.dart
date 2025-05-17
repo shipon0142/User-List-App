@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:assignment/core/utility/debouncer/debouncer.dart';
 import 'package:assignment/features/user/domain/entity/user.dart';
 import 'package:assignment/features/user/domain/use_cases/user_list_usecase.dart';
 import 'package:bloc/bloc.dart';
@@ -6,32 +7,51 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 part 'user_list_event.dart';
+
 part 'user_list_state.dart';
 
 class UserListBloc extends Bloc<UserListEvent, UserListState> {
   final UserListUseCase useCase;
   final ScrollController scrollController = ScrollController();
+  final TextEditingController searchController = TextEditingController();
+  final _debouncer = Debouncer(delay: Duration(milliseconds: 300));
 
-  final List<User> _userList = [];
+  final List<User> _userList = []; // Holds all fetched users
+  final List<User> _userListSearch = []; // Holds filtered users based on search
   int _page = 1;
-  final int _perPage = 15;
+  final int _perPage = 10;
   bool hasMore = false;
   bool _isFetching = false;
 
-  List<User> get getUserList => _userList;
+  List<User> get getUserList =>
+      searchController.text.isNotEmpty ? _userListSearch : _userList;
 
   UserListBloc({required this.useCase}) : super(UserListInitial()) {
     scrollController.addListener(_onScroll);
+    searchController.addListener(_onSearchChanged);
 
     on<GetUsers>(_onGetUsers);
     on<GetMoreUsers>(_onGetMoreUsers);
+    on<GetSearchUsers>(_onGetSearchUsers);
+  }
+
+  void _onSearchChanged() {
+    _debouncer(() {
+      add(GetSearchUsers());
+    });
+  }
+
+  bool isLoadingMore() {
+    return hasMore && searchController.text.isEmpty;
   }
 
   void _onScroll() {
     if (scrollController.position.pixels >=
         scrollController.position.maxScrollExtent) {
       if (hasMore && !_isFetching) {
-        add(GetMoreUsers());
+        _debouncer(() {
+          add(GetMoreUsers()); // Prevents frequent fetches
+        });
       }
     }
   }
@@ -45,14 +65,18 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
 
     final result = await useCase(page: _page, perPage: _perPage);
     result.fold(
-          (failure) => emit(UserListError(
+      (failure) => emit(UserListError(
         errorCode: failure.code,
         errorStatus: failure.status,
         errorMessage: failure.message,
       )),
-          (users) {
-        _userList.addAll(users);
-        hasMore = users.length == _perPage;
+      (response) {
+        _userList.addAll(response.data);
+        if (response.page < response.totalPages) {
+          hasMore = true;
+        } else {
+          hasMore = false;
+        }
         emit(UserListSuccess(users: _userList));
       },
     );
@@ -61,6 +85,9 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
   Future<void> _onGetMoreUsers(
       GetMoreUsers event, Emitter<UserListState> emit) async {
     if (_isFetching || !hasMore) return;
+    if (searchController.text.isNotEmpty) {
+      return; //Skip pagination during search
+    }
 
     _isFetching = true;
     _page++;
@@ -68,7 +95,7 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
 
     final result = await useCase(page: _page, perPage: _perPage);
     result.fold(
-          (failure) {
+      (failure) {
         hasMore = false;
         emit(MoreUserListError(
           errorCode: failure.code,
@@ -76,13 +103,17 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
           errorMessage: failure.message,
         ));
       },
-          (users) {
-        if (users.isEmpty) {
+      (response) {
+        if (response.data.isEmpty) {
           hasMore = false;
         } else {
-          _userList.addAll(users);
-          hasMore = users.length == _perPage;
-          emit(MoreUserListSuccess(users: users));
+          _userList.addAll(response.data);
+          if (response.page < response.totalPages) {
+            hasMore = true;
+          } else {
+            hasMore = false;
+          }
+          emit(MoreUserListSuccess(users: response.data));
         }
       },
     );
@@ -90,9 +121,29 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
     _isFetching = false;
   }
 
+  Future<void> _onGetSearchUsers(
+      GetSearchUsers event, Emitter<UserListState> emit) async {
+    final text = searchController.text;
+    emit(SearchingUserList());
+    if (text.isNotEmpty) {
+      _userListSearch.clear(); // Clean state on fresh load
+      _userListSearch.addAll(
+        _userList.where((user) => '${user.firstName}${user.lastName}'
+            .toLowerCase()
+            .contains(text.toLowerCase().toString())),
+      );
+      emit(SearchUserListSuccess(users: _userListSearch));
+    } else {
+      _userListSearch.clear();
+      emit(UserListSuccess(users: _userList));
+    }
+  }
+
   @override
   Future<void> close() {
-    scrollController.dispose();
+    _debouncer.dispose();
+    searchController.removeListener(_onSearchChanged);
+    searchController.dispose();
     return super.close();
   }
 }

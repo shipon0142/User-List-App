@@ -1,8 +1,8 @@
-import 'package:assignment/features/user/data/models/user_model.dart';
+import 'package:assignment/features/user/data/models/user_list_model/user_list_model.dart';
 
 
 abstract class IUserDataSource {
 
-  Future<List<UserModel>> getUserList({required int page,required int perPage});
+  Future<UserListModel> getUserList({required int page,required int perPage});
 
 }
