@@ -23,4 +23,56 @@ Future<void> injectDependencies() async {
 
     return dio;
   });
+
+  //NetworkInfo instance
+  injector.registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(InternetConnectionChecker()));
+
+  ///==========================================================================
+  ///================================ API SERVICE =============================
+  ///==========================================================================
+
+  injector.registerSingleton<UserApiService>(
+    UserApiService(injector()),
+  );
+
+  ///==========================================================================
+  ///=============================== DATA SOURCES =============================
+  ///==========================================================================
+  injector.registerLazySingleton<IUserDataSource>(
+    () => UserDataSource(
+      apiService: injector(),
+    ),
+  );
+
+  ///==========================================================================
+  ///=============================== REPOSITORIES =============================
+  ///==========================================================================
+
+  injector.registerLazySingleton<IUserRepository>(
+    () => UserRepository(
+      iDataSource: injector(),
+      networkInfo: injector(),
+    ),
+  );
+
+  ///==========================================================================
+  ///================================= USE CASES ==============================
+  ///==========================================================================
+
+  injector.registerLazySingleton<UserListUseCase>(
+    () => UserListUseCase(
+      iRepository: injector(),
+    ),
+  );
+
+  ///============================================================================
+  ///================================= BLOCS ====================================
+  ///============================================================================
+
+  injector.registerFactory<UserListBloc>(
+    () => UserListBloc(
+      useCase: injector(),
+    ),
+  );
 }

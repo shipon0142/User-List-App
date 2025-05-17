@@ -1,0 +1,29 @@
+import 'package:assignment/core/network/error_handler.dart';
+import 'package:assignment/core/network/network_info.dart';
+import 'package:assignment/features/user/data/data_sources/i_user_data_source.dart';
+import 'package:assignment/features/user/domain/entity/user.dart';
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/network/failure.dart';
+import '../../domain/repositories/i_user_repository.dart';
+
+class UserRepository extends IUserRepository {
+  final IUserDataSource iDataSource;
+  final NetworkInfo networkInfo;
+
+  UserRepository({required this.iDataSource, required this.networkInfo});
+
+  @override
+  Future<Either<Failure, List<User>>> getUsers() async {
+    if (await networkInfo.isConnected) {
+      try {
+        List<User> result = await iDataSource.getUserList();
+        return Right(result);
+      } on Exception catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+}

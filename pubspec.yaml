@@ -15,6 +15,9 @@ dependencies:
   # Navigation & deep linking
   auto_route: ^10.0.1
 
+  # State management (BLoC)
+  flutter_bloc: ^9.1.1
+
   # Value equality check
   equatable: ^2.0.7
 
@@ -24,7 +27,20 @@ dependencies:
   # Dependency injection
   get_it: ^8.0.3
 
+  # Immutable data classes
+  freezed_annotation: ^2.4.4
+
+  # JSON serialization
+  json_annotation: ^4.9.0
+
   cupertino_icons: ^1.0.8
+
+  # Internet connection checker
+  internet_connection_checker: ^1.0.0+1
+
+  # Functional programming utilities
+  dartz: ^0.10.1
+
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +53,13 @@ dev_dependencies:
 
   # AutoRoute code generator
   auto_route_generator: ^10.0.1
+
+  #code generator
+  freezed: ^2.5.7
+
+  # JSON serialization generator
+  json_serializable: ^6.8.0
+
 
 flutter:
   uses-material-design: true

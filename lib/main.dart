@@ -1,10 +1,12 @@
 import 'package:assignment/config/routes/app_router.dart';
+import 'package:assignment/core/di/di_import_path.dart';
 import 'package:assignment/core/utility/constants/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await injectDependencies();
   runApp(const MyApp());
 }
 
