@@ -11,5 +11,5 @@ class UserListUseCase {
   Future<Either<Failure, List<User>>> call({
     required int page,
     required int perPage,
-  }) async => await iRepository.getUsers();
+  }) async => await iRepository.getUsers(page: page,perPage: perPage);
 }

@@ -4,5 +4,5 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/network/failure.dart';
 
 abstract class IUserRepository {
-  Future<Either<Failure, List<User>>> getUsers();
+  Future<Either<Failure, List<User>>> getUsers({required int page, required int perPage});
 }

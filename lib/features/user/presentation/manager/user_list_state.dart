@@ -28,3 +28,23 @@ class UserListSuccess extends UserListState {
 
   const UserListSuccess({required this.users});
 }
+
+class MoreUserListLoading extends UserListState {}
+
+class MoreUserListError extends UserListState {
+  final int errorCode;
+  final String errorStatus;
+  final String errorMessage;
+
+  const MoreUserListError({
+    required this.errorStatus,
+    required this.errorCode,
+    required this.errorMessage,
+  });
+}
+
+class MoreUserListSuccess extends UserListState {
+  final List<User> users;
+
+  const MoreUserListSuccess({required this.users});
+}

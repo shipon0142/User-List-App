@@ -7,9 +7,14 @@ class UserApiService {
 
   UserApiService(this._dio);
 
-  Future<List<UserModel>> getUserList() async {
-    final response =
-        await _dio.get(APIConfig.kBaseUrl);
+  Future<List<UserModel>> getUserList({required int page, required int perPage}) async {
+    final response = await _dio.get(
+      APIConfig.kBaseUrl,
+      queryParameters: {
+        'page': page,
+        'per_page': perPage,
+      },
+    );
 
     final data = response.data;
 

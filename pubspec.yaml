@@ -41,6 +41,9 @@ dependencies:
   # Functional programming utilities
   dartz: ^0.10.1
 
+  # API request logger
+  pretty_dio_logger: ^1.4.0
+
 
 dev_dependencies:
   flutter_test:

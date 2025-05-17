@@ -10,8 +10,8 @@ class UserDataSource extends IUserDataSource {
   UserDataSource({required this.apiService});
 
   @override
-  Future<List<UserModel>> getUserList() async {
-    List<UserModel> users = await apiService.getUserList();
+  Future<List<UserModel>> getUserList({required int page,required int perPage}) async {
+    List<UserModel> users = await apiService.getUserList(page: page,perPage: perPage);
     return users;
   }
 }

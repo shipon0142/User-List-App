@@ -9,3 +9,6 @@ sealed class UserListEvent extends Equatable {
 class GetUsers extends UserListEvent {
   const GetUsers();
 }
+class GetMoreUsers extends UserListEvent {
+  const GetMoreUsers();
+}

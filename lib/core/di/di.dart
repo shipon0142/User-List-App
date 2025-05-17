@@ -20,6 +20,17 @@ Future<void> injectDependencies() async {
         handler.next(options);
       },
     ));
+    dio.interceptors.add(
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: false,
+        responseBody: false,
+        responseHeader: false,
+        error: true,
+        compact: true,
+        maxWidth: 90,
+      ),
+    );
 
     return dio;
   });

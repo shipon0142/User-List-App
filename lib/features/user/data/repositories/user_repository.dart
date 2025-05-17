@@ -14,10 +14,10 @@ class UserRepository extends IUserRepository {
   UserRepository({required this.iDataSource, required this.networkInfo});
 
   @override
-  Future<Either<Failure, List<User>>> getUsers() async {
+  Future<Either<Failure, List<User>>> getUsers({required int page, required int perPage}) async {
     if (await networkInfo.isConnected) {
       try {
-        List<User> result = await iDataSource.getUserList();
+        List<User> result = await iDataSource.getUserList(page: page,perPage: perPage);
         return Right(result);
       } on Exception catch (error) {
         return Left(ErrorHandler.handle(error).failure);
