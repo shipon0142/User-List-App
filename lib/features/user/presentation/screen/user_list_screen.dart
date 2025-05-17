@@ -4,6 +4,8 @@ import 'package:assignment/core/utility/constants/style_manager.dart';
 import 'package:assignment/core/utility/constants/values_manager.dart';
 import 'package:assignment/features/user/domain/entity/user.dart';
 import 'package:assignment/features/user/presentation/manager/user_list_bloc.dart';
+import 'package:assignment/features/user/presentation/pages/user_card_widget.dart';
+import 'package:assignment/features/user/presentation/pages/user_list_loading_widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utility/constants/color_manager.dart';
 import '../../../../core/utility/constants/screen_size.dart';
+import '../pages/user_list_widget.dart';
 
 @RoutePage()
 class UserListScreen extends StatelessWidget {
@@ -45,7 +48,7 @@ class UserListScreen extends StatelessWidget {
                         onSubmitted: (value) {},
                         controller: userBloc.searchController,
                         decoration: InputDecoration(
-                          hintText: 'Search users...',
+                          hintText: 'Search ...',
                           isDense: true,
                           prefixIcon: const Icon(Icons.search),
                           border: OutlineInputBorder(
@@ -60,77 +63,24 @@ class UserListScreen extends StatelessWidget {
               AppSpacing.verticalSpacing8,
               BlocBuilder<UserListBloc, UserListState>(
                 builder: (context, state) {
+                  if (((state is UserListLoading) ||
+                          (state is UserListInitial)) &&
+                      userBloc.getUserList.isEmpty) {
+                    return UserListLoadingWidget();
+                  }
                   return Flexible(
-                    child: SingleChildScrollView(
-                      controller: userBloc.scrollController,
-                      child: userBloc.getUserList.isNotEmpty
-                          ? Padding(
-                              padding: const EdgeInsets.all(AppPadding.p16),
-                              child: Column(
-                                children: [
-                                  ListView.separated(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: userBloc.getUserList.length,
-                                    itemBuilder: (_, index) {
-                                      User user = userBloc.getUserList[index];
-                                      return Container(
-                                        padding: const EdgeInsets.all(16),
-                                        // height: 84,
-                                        width: screenMaxWidth(context: context),
-                                        decoration: BoxDecoration(
-                                          color: ColorManager.kF7F8FA,
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            ClipOval(
-                                              child: CachedNetworkImage(
-                                                imageUrl: user.avatar,
-                                                width: 50,
-                                                height: 50,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            AppSpacing.horizontalSpacing16,
-                                            Text(
-                                              '${user.firstName} ${user.lastName}',
-                                              style: getSemiBoldStyle(
-                                                fontSize: 16,
-                                                color: ColorManager.k121212,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                    separatorBuilder:
-                                        (BuildContext context, int index) {
-                                      return AppSpacing.verticalSpacing8;
-                                    },
-                                  ),
-                                  AppSpacing.verticalSpacing4,
-                                  if (userBloc.isLoadingMore())
-                                    Center(
-                                      child: Column(
-                                        children: [
-                                          Center(
-                                            child: CircularProgressIndicator(
-                                              color: ColorManager.kColorOrange,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  AppSpacing.verticalSpacing8,
-                                ],
-                              ),
-                            )
-                          : SizedBox.shrink(),
+                    child: RefreshIndicator(
+                      color: ColorManager.kColorOrange,
+                      key: userBloc.refreshIndicatorKey,
+                      onRefresh: () async {
+                        userBloc.add(GetUsers());
+                      },
+                      child: SingleChildScrollView(
+                        controller: userBloc.scrollController,
+                        child: userBloc.getUserList.isNotEmpty
+                            ? UserListWidget(userBloc: userBloc)
+                            : SizedBox.shrink(),
+                      ),
                     ),
                   );
                 },

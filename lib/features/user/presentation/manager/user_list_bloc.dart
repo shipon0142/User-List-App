@@ -14,6 +14,8 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
   final UserListUseCase useCase;
   final ScrollController scrollController = ScrollController();
   final TextEditingController searchController = TextEditingController();
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+  GlobalKey<RefreshIndicatorState>();
   final _debouncer = Debouncer(delay: Duration(milliseconds: 300));
 
   final List<User> _userList = []; // Holds all fetched users
