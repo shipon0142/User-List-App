@@ -40,6 +40,14 @@ Future<void> injectDependencies() async {
   injector.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(InternetConnectionChecker()));
 
+  injector.registerSingletonAsync<CacheUtils>(
+          () async => await CacheUtils.getInstance());
+
+  injector.registerSingletonAsync<SharedPreferences>(
+          () async => await SharedPreferences.getInstance());
+
+  await GetIt.instance.isReady<SharedPreferences>();
+
   ///==========================================================================
   ///================================ API SERVICE =============================
   ///==========================================================================

@@ -50,6 +50,10 @@ dependencies:
   #shimmer
   shimmer: ^3.0.0
 
+  # local cache
+  shared_preferences: ^2.5.3
+
+
 
 dev_dependencies:
   flutter_test:
@@ -74,3 +78,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/png/
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
