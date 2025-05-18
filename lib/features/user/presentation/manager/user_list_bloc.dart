@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:assignment/core/utility/debouncer/debouncer.dart';
-import 'package:assignment/features/user/domain/entity/user.dart';
-import 'package:assignment/features/user/domain/use_cases/user_list_usecase.dart';
+import 'package:code_base/core/utility/debouncer/debouncer.dart';
+import 'package:code_base/features/user/domain/entity/user.dart';
+import 'package:code_base/features/user/domain/use_cases/user_list_usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,5 @@
-import 'package:assignment/core/utility/constants/color_manager.dart';
-import 'package:assignment/core/utility/constants/values_manager.dart';
+import 'package:code_base/core/utility/constants/color_manager.dart';
+import 'package:code_base/core/utility/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 

@@ -1,10 +1,10 @@
-import 'package:assignment/core/di/di_import_path.dart';
-import 'package:assignment/core/local_cache/cache_utils.dart';
-import 'package:assignment/core/network/error_handler.dart';
-import 'package:assignment/core/network/network_info.dart';
-import 'package:assignment/features/user/data/data_sources/i_user_data_source.dart';
-import 'package:assignment/features/user/domain/entity/user.dart';
-import 'package:assignment/features/user/domain/entity/user_list.dart';
+import 'package:code_base/core/di/di_import_path.dart';
+import 'package:code_base/core/local_cache/cache_utils.dart';
+import 'package:code_base/core/network/error_handler.dart';
+import 'package:code_base/core/network/network_info.dart';
+import 'package:code_base/features/user/data/data_sources/i_user_data_source.dart';
+import 'package:code_base/features/user/domain/entity/user.dart';
+import 'package:code_base/features/user/domain/entity/user_list.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/network/failure.dart';

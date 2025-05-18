@@ -1,7 +1,7 @@
-import 'package:assignment/core/network/api_config.dart';
-import 'package:assignment/features/user/data/models/user_list_model/user_list_model.dart';
-import 'package:assignment/features/user/data/models/user_model/user_model.dart';
-import 'package:assignment/features/user/domain/entity/user_list.dart';
+import 'package:code_base/core/network/api_config.dart';
+import 'package:code_base/features/user/data/models/user_list_model/user_list_model.dart';
+import 'package:code_base/features/user/data/models/user_model/user_model.dart';
+import 'package:code_base/features/user/domain/entity/user_list.dart';
 import 'package:dio/dio.dart';
 
 class UserApiService {

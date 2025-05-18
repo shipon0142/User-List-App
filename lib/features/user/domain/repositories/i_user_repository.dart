@@ -1,4 +1,4 @@
-import 'package:assignment/features/user/domain/entity/user_list.dart';
+import 'package:code_base/features/user/domain/entity/user_list.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/network/failure.dart';

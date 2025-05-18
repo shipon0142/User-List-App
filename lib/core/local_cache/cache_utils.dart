@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:assignment/core/utility/constants/constants_manager.dart';
-import 'package:assignment/features/user/data/models/user_list_model/user_list_model.dart';
-import 'package:assignment/features/user/domain/entity/user_list.dart';
+import 'package:code_base/core/utility/constants/constants_manager.dart';
+import 'package:code_base/features/user/data/models/user_list_model/user_list_model.dart';
+import 'package:code_base/features/user/domain/entity/user_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheUtils {

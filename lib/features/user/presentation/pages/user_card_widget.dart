@@ -1,9 +1,9 @@
-import 'package:assignment/config/routes/app_router.gr.dart';
-import 'package:assignment/core/utility/constants/app_spacing.dart';
-import 'package:assignment/core/utility/constants/color_manager.dart';
-import 'package:assignment/core/utility/constants/screen_size.dart';
-import 'package:assignment/core/utility/constants/style_manager.dart';
-import 'package:assignment/features/user/domain/entity/user.dart';
+import 'package:code_base/config/routes/app_router.gr.dart';
+import 'package:code_base/core/utility/constants/app_spacing.dart';
+import 'package:code_base/core/utility/constants/color_manager.dart';
+import 'package:code_base/core/utility/constants/screen_size.dart';
+import 'package:code_base/core/utility/constants/style_manager.dart';
+import 'package:code_base/features/user/domain/entity/user.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

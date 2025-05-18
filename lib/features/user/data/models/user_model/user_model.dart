@@ -1,4 +1,4 @@
-import 'package:assignment/features/user/domain/entity/user.dart';
+import 'package:code_base/features/user/domain/entity/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_model.freezed.dart';

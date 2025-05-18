@@ -1,7 +1,7 @@
-import 'package:assignment/core/network/failure.dart';
-import 'package:assignment/features/user/domain/entity/user.dart';
-import 'package:assignment/features/user/domain/entity/user_list.dart';
-import 'package:assignment/features/user/domain/repositories/i_user_repository.dart';
+import 'package:code_base/core/network/failure.dart';
+import 'package:code_base/features/user/domain/entity/user.dart';
+import 'package:code_base/features/user/domain/entity/user_list.dart';
+import 'package:code_base/features/user/domain/repositories/i_user_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class UserListUseCase {

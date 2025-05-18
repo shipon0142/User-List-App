@@ -1,4 +1,4 @@
-package com.flutter.assignment.assignment
+package com.codebase.assignment
 
 import io.flutter.embedding.android.FlutterActivity
 

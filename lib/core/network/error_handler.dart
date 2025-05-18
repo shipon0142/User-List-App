@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:assignment/core/utility/constants/string_manager.dart';
+import 'package:code_base/core/utility/constants/string_manager.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 

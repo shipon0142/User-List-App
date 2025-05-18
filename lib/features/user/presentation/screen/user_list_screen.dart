@@ -1,8 +1,8 @@
-import 'package:assignment/core/di/di_import_path.dart';
-import 'package:assignment/core/utility/constants/app_spacing.dart';
-import 'package:assignment/features/user/presentation/manager/user_list_bloc.dart';
-import 'package:assignment/features/user/presentation/pages/user_list_loading_widget.dart';
-import 'package:assignment/features/user/presentation/widgets/error_message_widget.dart';
+import 'package:code_base/core/di/di_import_path.dart';
+import 'package:code_base/core/utility/constants/app_spacing.dart';
+import 'package:code_base/features/user/presentation/manager/user_list_bloc.dart';
+import 'package:code_base/features/user/presentation/pages/user_list_loading_widget.dart';
+import 'package:code_base/features/user/presentation/widgets/error_message_widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

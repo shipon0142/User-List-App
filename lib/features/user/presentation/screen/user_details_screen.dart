@@ -1,10 +1,10 @@
-import 'package:assignment/core/utility/constants/app_spacing.dart';
-import 'package:assignment/core/utility/constants/color_manager.dart';
-import 'package:assignment/core/utility/constants/font_manager.dart';
-import 'package:assignment/core/utility/constants/screen_size.dart';
-import 'package:assignment/core/utility/constants/style_manager.dart';
-import 'package:assignment/core/utility/constants/values_manager.dart';
-import 'package:assignment/features/user/domain/entity/user.dart';
+import 'package:code_base/core/utility/constants/app_spacing.dart';
+import 'package:code_base/core/utility/constants/color_manager.dart';
+import 'package:code_base/core/utility/constants/font_manager.dart';
+import 'package:code_base/core/utility/constants/screen_size.dart';
+import 'package:code_base/core/utility/constants/style_manager.dart';
+import 'package:code_base/core/utility/constants/values_manager.dart';
+import 'package:code_base/features/user/domain/entity/user.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 

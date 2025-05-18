@@ -1,9 +1,9 @@
-import 'package:assignment/core/utility/constants/app_spacing.dart';
-import 'package:assignment/core/utility/constants/asset_manger.dart';
-import 'package:assignment/core/utility/constants/color_manager.dart';
-import 'package:assignment/core/utility/constants/font_manager.dart';
-import 'package:assignment/core/utility/constants/style_manager.dart';
-import 'package:assignment/core/utility/constants/values_manager.dart';
+import 'package:code_base/core/utility/constants/app_spacing.dart';
+import 'package:code_base/core/utility/constants/asset_manger.dart';
+import 'package:code_base/core/utility/constants/color_manager.dart';
+import 'package:code_base/core/utility/constants/font_manager.dart';
+import 'package:code_base/core/utility/constants/style_manager.dart';
+import 'package:code_base/core/utility/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class ErrorMessageWidget extends StatelessWidget {

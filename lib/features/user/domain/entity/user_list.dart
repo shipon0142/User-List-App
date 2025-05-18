@@ -1,4 +1,4 @@
-import 'package:assignment/features/user/domain/entity/user.dart';
+import 'package:code_base/features/user/domain/entity/user.dart';
 
 class UserList {
   final int page;

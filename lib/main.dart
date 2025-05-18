@@ -1,6 +1,6 @@
-import 'package:assignment/config/routes/app_router.dart';
-import 'package:assignment/core/di/di_import_path.dart';
-import 'package:assignment/core/utility/constants/color_manager.dart';
+import 'package:code_base/config/routes/app_router.dart';
+import 'package:code_base/core/di/di_import_path.dart';
+import 'package:code_base/core/utility/constants/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

@@ -1,6 +1,6 @@
-import 'package:assignment/core/presentation/widgets/shimmer/shimmer_bg.dart';
-import 'package:assignment/core/utility/constants/app_spacing.dart';
-import 'package:assignment/core/utility/constants/values_manager.dart';
+import 'package:code_base/core/presentation/widgets/shimmer/shimmer_bg.dart';
+import 'package:code_base/core/utility/constants/app_spacing.dart';
+import 'package:code_base/core/utility/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class UserListLoadingWidget extends StatelessWidget {

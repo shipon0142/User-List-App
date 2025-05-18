@@ -1,5 +1,5 @@
-import 'package:assignment/features/user/data/models/user_model/user_model.dart';
-import 'package:assignment/features/user/domain/entity/user_list.dart';
+import 'package:code_base/features/user/data/models/user_model/user_model.dart';
+import 'package:code_base/features/user/domain/entity/user_list.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_list_model.freezed.dart';
