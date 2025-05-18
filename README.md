@@ -77,9 +77,9 @@ lib/
 
    ```
    flutter run
+   
    ```
 
-## 📽 Demo
+https://github.com/user-attachments/assets/e4287d61-2b83-4f77-bc9c-a5ba82432f18
 
-[![Demo Video](https://raw.githubusercontent.com/shipon0142/User-List-App/main/assets/png/app_thumbnail.png)](https://raw.githubusercontent.com/shipon0142/User-List-App/main/assets/video/demo.mp4)
 
