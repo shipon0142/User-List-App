@@ -17,33 +17,7 @@ class UserDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            Navigator.maybePop(context);
-          },
-          child: SizedBox(
-            height: 40,
-            width: 40,
-            child: Center(
-              child: Icon(
-                Icons.arrow_back,
-                color: ColorManager.kColorBlack,
-                size: 24,
-              ),
-            ),
-          ),
-        ),
-        backgroundColor: ColorManager.kColorWhite,
-        scrolledUnderElevation: 0,
-        title: Text(
-          'Details',
-          style: getBoldStyle(
-            color: ColorManager.kColorBlack,
-            fontSize: FontSize.s16,
-          ),
-        ),
-      ),
+      appBar: _buildAppBar(context),
       backgroundColor: ColorManager.kColorWhite,
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(
@@ -52,6 +26,36 @@ class UserDetailsScreen extends StatelessWidget {
           top: AppPadding.p16,
         ),
         child: _buildProfileContent(user, context),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      leading: InkWell(
+        onTap: () {
+          Navigator.maybePop(context);
+        },
+        child: SizedBox(
+          height: 40,
+          width: 40,
+          child: Center(
+            child: Icon(
+              Icons.arrow_back,
+              color: ColorManager.kColorBlack,
+              size: 24,
+            ),
+          ),
+        ),
+      ),
+      backgroundColor: ColorManager.kColorWhite,
+      scrolledUnderElevation: 0,
+      title: Text(
+        'Details',
+        style: getBoldStyle(
+          color: ColorManager.kColorBlack,
+          fontSize: FontSize.s16,
+        ),
       ),
     );
   }
@@ -85,11 +89,8 @@ class UserDetailsScreen extends StatelessWidget {
             AppSpacing.verticalSpacing8,
             Text(
               user.email,
-
               style: getRegularStyle(
-                color: ColorManager.kColorBlack,
-                fontSize: FontSize.s16
-              ),
+                  color: ColorManager.kColorBlack, fontSize: FontSize.s16),
             ),
             AppSpacing.verticalSpacing32,
           ],
